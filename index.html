@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-main-container">
+        <ul class="nav-list-ul">
+          <h2 class="logo-word">sneakers</h2>
+          <li>Collections</li>
+          <li>Men</li>
+          <li>Women</li>
+          <li>About</li>
+          <li>Contact</li>
+        </ul>
+        <div class="nav-rigth-section">
+          <img
+            class="shopping-car-icon"
+            src="./assets/icons/shopping-cart.png"
+            alt=""
+          />
+          <div class="picture-profile-section">
+              <img class="profile-pitcure" src="./assets/img/platzi-profile.jpg" alt="profile-picture">
+          </div>
+        </div>
+      </nav>
+      <p>
+        <hr class="line-navBar">
+      </p>
+    </header>
+    <!-- Main Section -->
+    <main>
+      <section class="main-principal-container">
+        <!-- Pictures-Section -->
+        <section class="pictures-section">
+          <img class="principal-picture" src="./assets/img/principal-picture.jpg" alt="">
+          <section class="min-pictures">
+            <img src="./assets/img/pexels-erik-mclean-4219177.jpg" alt="">
+            <img src="./assets/img/pexels-erik-mclean-4219179.jpg" alt="">
+            <img src="./assets/img/pexels-erik-mclean-4219181.jpg" alt="">
+            <img src="./assets/img/principal-picture.jpg" alt="">
+          </section>
+        </section>
+        <section class="product-section">
+          <!-- Product detail section -->
+          <h2 class="company-title">Sneakers company</h2>
+          <section class="product-info">
+            <div class="produc-title-description">
+              <h1>Fall Limited Edition Sneakers</h1>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Culpa, quam ipsam! Totam quia praesentium natus veritatis, 
+                nulla aspernatur inventore nemo nisi sequi corrupti non molestias 
+                enim accusantium beatae, doloribus quo?
+              </p>
+            </div>
+            <div class="product-price">
+              <h2 id="price">125.000</h2>
+              <h3 id="old-price">200.000</h3>
+            </div>
+          </section>
+          <!-- add product section -->
+          <section class="add-product-section">
+            <div class="counter-product">
+              <img src="./assets/icons/menos-icon.png" alt="">
+              <p id="number-item">0</p>
+              <img src="./assets/icons/mas-icon.png" alt="">
+            </div>
+            <button type="submit" id="add-cart-button">
+              <img src="./assets/icons/shopping-cart-white.png" alt="">
+              <p>Add to cart</p>
+            </button>
+          </section>
+        </section>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer></footer>
+
+    <script type="module" src="./functionality/app.js"></script>
+  </body>
+</html>
