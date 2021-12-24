@@ -1,4 +1,5 @@
-let code = ""
+let itemGlobal = ''
+let itemsToPurchase = 0
 /* CLASES */
 
 /* Creating superClass for all products */
@@ -88,7 +89,7 @@ const createShoesProduct = () =>{
         product_price : 125000,
         product_discount : 0,
         product_size : 37,
-        product_code : "55020280",
+        product_code : "12",
         product_amount: 5,
     });
         /* Se manda a llamar la función para verificar si ya existe el producto */
@@ -101,9 +102,6 @@ const createShoesProduct = () =>{
             products.push(newShoes.product_code);
             /* Envio los datos al array como base de datos */
             clothesList.push(newShoes);
-            /* Cargo los details del producto */
-            addProductDetails(newShoes.product_code);
-            code = newShoes.product_code;
         }
 }
 const createBufandaProduct = () =>{
@@ -114,7 +112,7 @@ const createBufandaProduct = () =>{
         product_description : "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa, quam ipsam! Totam quia praesentium natus veritatis, nulla aspernatur inventore nemo nisi sequi corrupti non molestias enim accusantium beatae, doloribus quo?",
         product_price : 3000000,
         product_discount : 0,
-        product_code : "55020270",
+        product_code : "123",
         product_amount: 5,
         product_guaranteed: "12 Meses"
     });
@@ -128,9 +126,7 @@ const createBufandaProduct = () =>{
             products.push(newBufanda.product_code);
             /* Envio los datos al array como base de datos */
             clothesList.push(newBufanda);
-            /* Cargo los details del producto */
-            addProductDetails(newBufanda.product_code);
-            code = newBufanda.product_code;
+
         }
 }
 /* Transacciones */
@@ -172,40 +168,76 @@ let productTitle = document.getElementById('product-title'); /* Tomo valor del t
 let productPrice = document.getElementById('price'); /* Tomo el valor de price */
 let productDescription = document.getElementById('product-description') /* Tomo el valor de description */
 
-addProductDetails = (productCode) =>{
+/* Counting items */
+let productCounterPlus = document.getElementById('product-counter-plus');
+let productCounterLess = document.getElementById('product-counter-less');
+let numberItems = document.getElementById('number-item');
+
+/* Add to cart button */
+let addbutton = document.getElementById('add-cart-button');
+
+
+addProductDetails = productCode => {
     let verification = verificationItem(productCode);
     /* Valido de nuevo que el producto no exista */
     if(verification){
-        clothesList.forEach(function (item) {
+            const item = clothesList.find(persona => persona.product_code === productCode);
+            itemGlobal = item.product_code
             productTitle.innerHTML = item.product_name;
             productPrice.innerHTML = item.product_price;   
             productDescription.innerHTML = item.product_description;    
-        })
     }else{
         console.warn("El producto no existe");
     }
 }
 
-/* Counting items */
-addAmountItems = () => {
-
-}
-decreaseAmoutItems = () => {
-
-}
-validatingAmoutItems = () => {
-    /* let verification = verificationItem(productCode);
-    let amoutItems;
-    if(verification){
-        clothesList.forEach(function (item){
-            amoutItems = item.product_amount;
-            if(amoutItems >)
-            console.log(amoutItems)
-        })
+productCounterPlus.addEventListener('click', () =>{
+    const item = clothesList.find(persona => persona.product_code === itemGlobal);
+    if(itemGlobal === ''){
+        alert(`No se ha cargado un producto al sistema`);
+    }else if(item.product_amount > itemsToPurchase){
+        itemsToPurchase++
+        numberItems.innerHTML = String(itemsToPurchase);
     }else{
-        console.log("El producto no existe")
-    } */
-}
-addCartProduct = () =>{
+        alert(`Sólo tenemos ${item.product_amount} en existencia`);
+    }
+}, );
+   
+productCounterLess.addEventListener('click', () =>{
+    const item = clothesList.find(persona => persona.product_code === itemGlobal);
+    if(itemGlobal === ''){
+        alert(`No se ha cargado un producto al sistema`);
+    }else if(itemsToPurchase > 0){
+        itemsToPurchase--
+        numberItems.innerHTML = String(itemsToPurchase);
+    }else{
+        alert(`La cantidad de productos debe ser mayor a 0`);
+    }
+}, );
 
-}
+addbutton.addEventListener('click', () =>{
+    const item = clothesList.find(persona => persona.product_code === itemGlobal);
+    if(itemsToPurchase === 0){
+        alert("La cantidad de productos debe ser mayor a 0");
+    }else{
+        console.log(`
+        El producto añadido es: ${item.product_name}
+        La cantidad es: ${itemsToPurchase}
+        Precio: ${item.product_price*itemsToPurchase}`)
+    }
+});
+
+validatingAmoutItems = () => {
+
+        const item = clothesList.find(persona => persona.product_code === itemGlobal);
+        console.log(item.product_amount);
+        console.log(numberItems.innerHTML.value)
+        if(item.product_amount > numberItems.innerHTML.value){
+            return true;
+        }else{
+            return false;
+        }
+ }
+
+
+
